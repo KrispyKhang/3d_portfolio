@@ -6,6 +6,7 @@ import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
 
 import Robot from '../models/Robot'
+import useAlert from '../hooks/useAlert'
 
 
 
@@ -14,6 +15,8 @@ const Contact = () => {
     const [form, setForm] = useState({ name: '', email: '', message: '' })
     const [loading, setLoading] = useState(false);
     const [currentAnimation, setCurrentAnimation] = useState('amature|flying');
+
+    const { alert, showAlert, hideAlert } = useAlert();
 
 
 
@@ -24,7 +27,6 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        setCurrentAnimation('amature|flying');
 
 
         emailjs
@@ -42,21 +44,35 @@ const Contact = () => {
             )
             .then(() => {
                 setLoading(false);
+                showAlert({ show: true, text: "Message sent successfully!", type: "success" });
 
-                setForm({ name: '', email: '', message: '' });
+                setTimeout(() => {
+                    hideAlert(false);
+                    setForm({ name: '', email: '', message: '' });
+
+                    //  the 3000 is the time in milliseconds
+                    //  set timeout is resetting the form back to empty after 1,5 seconds
+                }, [1500]);
+
+
+
             }).catch((error) => {
                 setLoading(false);
-                setCurrentAnimation('amature|flying');
+                showAlert({ show: true, text: "I didn't receieve your message!", type: "danger" })
                 console.log(error)
 
             });
     };
 
+    // amature|flying is the animation that the robot is doing from Sketchfab
     const handleFocus = () => setCurrentAnimation('amature|flying');
     const handleBlur = () => setCurrentAnimation('Static Pose');
 
     return (
         <section className="relative flex lg:flex-row flex-col max-container">
+            {/* (alert.show && <Alert {...alert} />) */}
+
+
             <div className="flex-1 min-w [50%] flex flex-col">
                 <h1 className="head-text">
                     Get in Touch
