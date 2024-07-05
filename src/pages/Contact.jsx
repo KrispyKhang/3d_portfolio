@@ -4,6 +4,7 @@ import { Suspense, useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
+import Alert from '../components/Alert'
 
 import Robot from '../models/Robot'
 import useAlert from '../hooks/useAlert'
@@ -66,11 +67,15 @@ const Contact = () => {
 
     // amature|flying is the animation that the robot is doing from Sketchfab
     const handleFocus = () => setCurrentAnimation('amature|flying');
-    const handleBlur = () => setCurrentAnimation('Static Pose');
+
+    // active this if you want the animation to stop in the form (find the handleBlur below)
+    // "Static Pose" is the name of the animation from Sketchfab of the robot
+
+    // const handleBlur = () => setCurrentAnimation('Static Pose');
 
     return (
         <section className="relative flex lg:flex-row flex-col max-container">
-            {/* (alert.show && <Alert {...alert} />) */}
+            {alert.show && <Alert {...alert} />}
 
 
             <div className="flex-1 min-w [50%] flex flex-col">
@@ -94,7 +99,8 @@ const Contact = () => {
                             value={form.name}
                             onChange={handleChange}
                             onFocus={handleFocus}
-                            onBlur={handleBlur}
+                        //  activate handleBlur if you want the sketchfab animation to be static and not movve ( see the const handlBlur above)
+                        // onBlur={handleBlur}
                         />
                     </label>
                     <label className="text-black-500 font-semibold">
@@ -108,7 +114,7 @@ const Contact = () => {
                             value={form.email}
                             onChange={handleChange}
                             onFocus={handleFocus}
-                            onBlur={handleBlur}
+                        // onBlur={handleBlur}
                         />
                     </label>
                     <label className="text-black-500 font-semibold">
@@ -122,7 +128,7 @@ const Contact = () => {
                             value={form.message}
                             onChange={handleChange}
                             onFocus={handleFocus}
-                            onBlur={handleBlur}
+                        // onBlur={handleBlur}
                         />
                     </label>
                     <button
@@ -130,7 +136,7 @@ const Contact = () => {
                         className="btn"
                         disabled={loading}
                         onFocus={handleFocus}
-                        onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     >
                         {loading ? 'Sending...' : 'Send Message'}
 
