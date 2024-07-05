@@ -26,7 +26,7 @@ export function Bird() {
 
         // Check if the bird reached a certain endpoint relative to the camera
         if (birdRef.current.position.x > camera.position.x + 10) {
-            // Change direction to backward and rotate the bird 180 degrees on the y-axis
+            // Change direction to backward and rotate the bird 180 degrees on thes y-axis
             birdRef.current.rotation.y = Math.PI;
         } else if (birdRef.current.position.x < camera.position.x - 10) {
             // Change direction to forward and reset the bird's rotation
