@@ -1,3 +1,4 @@
+import { skills } from '../constants'
 
 const About = () => {
     return (
@@ -16,6 +17,19 @@ const About = () => {
             </div>
 
             <div className="mt-16 flex flex-wrap gap-12">
+                {skills.map((skill) => (
+                    <div className='block-container'>
+                        <div>
+                            <img
+                                src={skill.imageUrl}
+                                alt={skill.name}
+                            />
+
+                        </div>
+
+                    </div>
+                ))}
+
 
 
 
