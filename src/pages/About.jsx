@@ -2,6 +2,7 @@ import { skills, languages, experiences } from '../constants'
 
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import CTA from '../components/CTA';
 
 
 
@@ -9,7 +10,7 @@ const About = () => {
     return (
         <section className="max-container">
             <h1 className="head-text">
-                Hello I'm <span className="blue-gradient_text font-semibold drop-shadow"> Khang Tran</span>
+                Hello I'm <span className="blue-gradient_text"> Khang Tran</span>
             </h1>
 
             <div className="mt-5 flex flex-col gap-3">
@@ -72,14 +73,16 @@ const About = () => {
                         labore laboriosam optio nihil. Impedit repudiandae qui soluta iusto alias.</p>
                 </div>
 
+
                 <div className='mt-12 flex'>
                     <VerticalTimeline>
                         {experiences.map((experience) => (
                             <VerticalTimelineElement
                                 key={experience.company_name}
                                 date={experience.date}
+                                dateClassName='text-black-500/50'
                                 icon={
-                                    <div className='flex justify-center items-center w-full h-full'>
+                                    < div className='flex justify-center items-center w-full h-full' >
                                         <img
                                             src={experience.icon}
                                             alt={experience.company_name}
@@ -110,21 +113,18 @@ const About = () => {
                                             className='text-black-500/50 font-normal pl-1 text-sm'>{point}</li>
                                     ))}
                                 </ul>
-
-
-
                             </VerticalTimelineElement>
-
 
                         ))};
                     </VerticalTimeline>
 
-                </div>
+                </div >
 
-            </div>
+            </div >
 
             {/*  creates a nice line to divide to the next session */}
-            <hr className='border-slate-200' />
+            < hr className='border-slate-200' />
+            <CTA />
         </section >
     )
 }

@@ -39,16 +39,33 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .input {
-    @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
+    @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-black-500 focus:border-black-500 focus:outline-none block w-full p-2.5 mt-2.5 font-normal shadow-card;
   }
-
+  
   .textarea {
-    @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
+    @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-black-500 focus:border-black-500 focus:outline-none mt-2.5 font-normal shadow-card;
   }
+  
+  .input:focus,
+  .textarea:focus {
+    border-color: #0072ff;
+  }
+  
+  
 
   .btn {
-    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-transparent font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    transition: transform 0.2s ease-out; /* Add a transition for smooth animation */
   }
+  
+  .btn:hover {
+    transform: scale(1.02); /* Increase size on hover */
+  }
+  
+  .btn:active {
+    transform: scale(0.97); /* Shrink size when clicked */
+  }
+  
 
   .header {
     @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
@@ -75,7 +92,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .cta-text {
-    @apply text-black-500 font-extrabold flex-1 text-3xl max-md:text-center;
+    @apply font-semibold sm:text-3xl font-poppins flex-1 text-3xl max-md:text-center;
   }
 }
 
