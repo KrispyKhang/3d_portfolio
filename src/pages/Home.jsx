@@ -9,11 +9,21 @@ import Bird from '../models/Bird'
 import Plane from '../models/Plane'
 import HomeInfo from '../components/HomeInfo'
 
+import summer from '../assets/SummerAir.mp3'
+import soundon from '../assets/icons/soundon.png'
+import soundoff from '../assets/icons/soundoff.png'
+
+
 
 
 const Home = () => {
-    const [isRotating, setIsRotating] = useState(false)
+    const audioRef = useRef(new Audio(summer));
+    audioRef.current.volume = 0.4;
+    audioRef.current.loop = true;
+
+    const [isRotating, setIsRotating] = useState(false);
     const [currentStage, setCurrentStage] = useState(1)
+    const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
 
 
@@ -97,6 +107,15 @@ const Home = () => {
 
                 </Suspense>
             </Canvas>
+            <div className='absolute bottom-2 left-2'>
+                <img
+                    src={isPlayingMusic ? soundoff : soundon}
+                    alt='sound'
+                    className='w-10 h-10 cursor-pointer'
+                    onClick={() => { isPlayingMusic ? audioRef.current.pause() : audioRef.current.play(); setIsPlayingMusic(!isPlayingMusic) }}
+
+                />
+            </div>
         </section >
     )
 }
